@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useRef, useEffect } from 'react';
 import { useGSAP } from '../hooks/useGSAP';
+import Shoe3D from './Shoe3D';
 
 export default function Hero() {
   /* ─── Refs for each parallax depth layer ─── */
@@ -246,17 +247,10 @@ export default function Hero() {
             {/* Sneaker */}
             <div
               ref={sneakerRef}
-              className="sneaker-float relative z-10 w-full max-w-[600px]"
-              style={{ filter: 'drop-shadow(0 40px 80px rgba(80,80,200,0.4))' }}
+              className="sneaker-float relative z-10 w-full"
+              style={{ height: '480px', maxWidth: '560px' }}
             >
-              <Image
-                src="/hero-sneaker.png?v=2"
-                alt="Premium Nock Kicks Sneaker"
-                width={700} height={500} priority
-                unoptimized={true}
-                className="w-full h-auto object-contain select-none"
-                style={{ transform: 'rotate(-8deg)' }}
-              />
+              <Shoe3D />
             </div>
 
             {/* Price card */}
