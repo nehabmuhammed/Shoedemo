@@ -6,12 +6,26 @@ import { useGLTF, Environment, ContactShadows, OrbitControls, Center } from "@re
 
 function ShoeModel() {
   const { scene } = useGLTF("/models/shoe.glb");
+  const [scale, setScale] = React.useState(0.6);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setScale(0.5); // Smaller on mobile
+      } else {
+        setScale(0.6);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Center position={[0, 0.4, 0]}>
       <primitive
         object={scene}
-        scale={0.6}
+        scale={scale}
         rotation={[0, -0.4, 0]}
       />
     </Center>
@@ -20,10 +34,10 @@ function ShoeModel() {
 
 export default function Shoe3D() {
   return (
-    <div style={{ width: "100%", height: "100%", cursor: "grab", marginTop: "-40px" }}>
+    <div className="w-full h-full cursor-grab -mt-10 sm:-mt-12 lg:-mt-14">
       <Canvas
         camera={{ position: [0, 0.5, 6], fov: 45 }}
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
         gl={{ antialias: true, alpha: true }}
         shadows
       >

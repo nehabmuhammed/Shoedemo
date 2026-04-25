@@ -247,8 +247,7 @@ export default function Hero() {
             {/* Sneaker */}
             <div
               ref={sneakerRef}
-              className="sneaker-float relative z-10 w-full"
-              style={{ height: '480px', maxWidth: '560px' }}
+              className="sneaker-float relative z-10 w-full h-[350px] sm:h-[450px] lg:h-[600px] max-w-[600px]"
             >
               <Shoe3D />
             </div>
